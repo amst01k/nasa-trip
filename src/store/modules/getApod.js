@@ -1,5 +1,9 @@
 /* eslint-disable no-console */
 import axios from "axios";
+
+const nasaAPIKey = "xCjs3Fq3PI3V74LHy11wvmbJEcyOhLQ764cI2p2T";
+const apodURL = "https://api.nasa.gov/planetary/apod?api_key=" + nasaAPIKey;
+
 const state = {
     apod: []
   },
@@ -8,14 +12,12 @@ const state = {
   },
   actions = {
     async fetchApod({ commit }) {
-      const response = await axios.get(
-        "https://api.nasa.gov/planetary/apod?api_key=xCjs3Fq3PI3V74LHy11wvmbJEcyOhLQ764cI2p2T"
-      );
+      const response = await axios.get(apodURL);
       commit("setApod", response.data);
     },
     async updateApod({ commit }, newDate) {
       const response = await axios.get(
-        `https://api.nasa.gov/planetary/apod?api_key=xCjs3Fq3PI3V74LHy11wvmbJEcyOhLQ764cI2p2T&date=${newDate.date}`,
+        apodURL + "&date=" + `${newDate.date}`,
         newDate
       );
       commit("changeDate", response.data);

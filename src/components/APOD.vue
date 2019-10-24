@@ -11,12 +11,9 @@
                 <v-list-item-subtitle>NASA's Astrophotography Photo Of the Day (APOD)</v-list-item-subtitle>
                 <p class="body-2 mt-3">{{allApod.explanation}}</p>
               </v-list-item-content>
-              <!-- <v-list-item-avatar>
-                <v-img :src="allApod.url"></v-img>
-              </v-list-item-avatar>-->
             </v-list-item>
             <v-card-actions>
-              <v-row>
+              <v-row class="ml-1">
                 <v-col col="12" sm="12" md="12" lg="12" order="1">
                   <v-menu
                     ref="menu"
@@ -44,13 +41,13 @@
                         text
                         color="primary"
                         @click="$refs.menu.save(date), onSelect(allApod.date)"
-                      >OK</v-btn>
+                      >View</v-btn>
                     </v-date-picker>
                   </v-menu>
                 </v-col>
               </v-row>
               <v-row class="mx-1">
-                <v-col col="12" sm="12" md="12" lg="12">
+                <v-col col="12" sm="12" md="12" lg="12" order="2">
                   <v-btn :href="allApod.hdurl" target="blank">View HD APOD</v-btn>
                 </v-col>
               </v-row>
