@@ -15,17 +15,14 @@ const state = {
       const response = await axios.get(apodURL);
       commit("setApod", response.data);
     },
-    async updateApod({ commit }, newDate) {
-      const response = await axios.get(
-        apodURL + "&date=" + `${newDate.date}`,
-        newDate
-      );
-      commit("changeDate", response.data);
+    async updateApod({ commit }, date) {
+      const response = await axios.get(apodURL + "&date=" + `${date}`);
+      commit("newDate", response.data);
     }
   },
   mutations = {
     setApod: (state, apod) => (state.apod = apod),
-    changeDate: (state, apod) => (state.apod = apod)
+    newDate: (state, apod) => (state.apod = apod)
   };
 
 export default {
