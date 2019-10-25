@@ -3,6 +3,7 @@
     <NavBar />
     <v-content>
       <v-container>
+        <Hero />
         <DataView />
       </v-container>
     </v-content>
@@ -11,13 +12,15 @@
 
 <script>
 import NavBar from "@/components/NavBar.vue";
+import Hero from "@/components/Hero.vue";
 import DataView from "@/components/DataView.vue";
 
 export default {
   name: "App",
   components: {
-    DataView,
-    NavBar
+    NavBar,
+    Hero,
+    DataView
   }
 };
 </script>

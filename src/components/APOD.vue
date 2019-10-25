@@ -1,46 +1,73 @@
 <template>
   <div>
-    <v-row :src="allApod.url">
+    <v-row>
       <v-col cols="12" sm="6" md="12" lg="12">
         <div class="apods">
-          <v-card class="apod pt-3" width="344" max-width="344" outlined>
-            <v-list-item three-line>
-              <v-list-item-content>
-                <div class="overline my-0">{{allApod.date}}</div>
-                <v-list-item-title class="title my-0">{{allApod.title}}</v-list-item-title>
+          <v-card class="apod d-block d-sm-block d-md-flex d-lg-flex d-xl-flex py-2" flat>
+            <v-list-item class="d-block d-sm-block d-md-flex d-lg-flex d-xl-flex">
+              <v-img :src="allApod.url" max-width="344" aspect-ratio="1" :alt="allApod.title"></v-img>
+              <v-list-item-content class="pr-0 pl-md-6 pl-lg-6">
+                <div class="overline">{{allApod.date}}</div>
+                <v-list-item-title class="title">{{allApod.title}}</v-list-item-title>
                 <v-list-item-subtitle>NASA's Astrophotography Photo Of the Day (APOD)</v-list-item-subtitle>
-                <p class="body-2 mt-3">{{allApod.explanation}}</p>
+                <p class="body-2 my-3">{{allApod.explanation}}</p>
+                <v-alert dense outlined type="error">Warning: The HD file could be a large download.</v-alert>
+                <v-card-actions
+                  class="justify-start align-start flex-column flex-lg-row px-0 py-0 mt-0 mt-lg-3 vertical-middle"
+                >
+                  <v-menu
+                    ref="menu"
+                    v-model="menu"
+                    :close-on-content-click="false"
+                    :return-value.sync="date"
+                    transition="scale-transition"
+                    origin="top right"
+                    offset-x
+                    left
+                    min-width="290px"
+                  >
+                    <template v-slot:activator="{ on }">
+                      <v-text-field
+                        v-model="date"
+                        label="Select A Date"
+                        prepend-icon="mdi-calendar"
+                        readonly
+                        v-on="on"
+                        max-width="150px"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker v-model="date" no-title scrollable min="1995-06-16">
+                      <v-spacer></v-spacer>
+                      <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.menu.save(date), onSelect(date)"
+                        v-on:key-down.enter="$refs.menu.save(date), onSelect(date)"
+                      >View</v-btn>
+                    </v-date-picker>
+                  </v-menu>
+                  <v-btn :href="allApod.url" class="my-3 mr-lg-3" target="blank" outlined large>
+                    View SD APOD
+                    <v-icon color="primary">mdi-download</v-icon>
+                  </v-btn>
+                  <v-hover v-slot:default="{hover}">
+                    <v-btn
+                      :href="allApod.hdurl"
+                      class="my-3 mx-0 mr-lg-3"
+                      target="blank"
+                      :title="title"
+                      outlined
+                      large
+                      :class="{'on-hover': hover}"
+                    >
+                      View HD APOD
+                      <v-icon color="primary">mdi-download</v-icon>
+                    </v-btn>
+                  </v-hover>
+                </v-card-actions>
               </v-list-item-content>
             </v-list-item>
-            <v-card-actions>
-              <v-menu
-                ref="menu"
-                v-model="menu"
-                :close-on-content-click="false"
-                :return-value.sync="date"
-                transition="scale-transition"
-                offset-y
-                min-width="290px"
-              >
-                <template v-slot:activator="{ on }">
-                  <v-text-field
-                    v-model="date"
-                    label="Select A Date"
-                    prepend-icon="mdi-calendar"
-                    readonly
-                    v-on="on"
-                    max-width="150px"
-                  ></v-text-field>
-                </template>
-                <v-date-picker v-model="date" no-title scrollable min="1995-06-16" max="today">
-                  <v-spacer></v-spacer>
-                  <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
-                  <v-btn text color="primary" @click="$refs.menu.save(date), onSelect(date)">View</v-btn>
-                </v-date-picker>
-              </v-menu>
-              <v-spacer class="ml-6"></v-spacer>
-              <v-btn :href="allApod.hdurl" target="blank" :title="title">View HD APOD</v-btn>
-            </v-card-actions>
           </v-card>
         </div>
       </v-col>
@@ -56,7 +83,7 @@ export default {
   data: () => ({
     date: new Date().toISOString().substr(0, 10),
     menu: false,
-    title: "This is a big download!!"
+    title: "Warning: This could be a large download!!"
   }),
   methods: {
     ...mapActions(["fetchApod", "updateApod"]),
@@ -71,10 +98,14 @@ export default {
 };
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
 .apods
-    align-items: center
-    display: flex
-    flex-wrap: wrap
-    justify-content: center
+  display: flex
+  flex-wrap: wrap
+
+.v-text-field > .v-input__control > .v-input__slot
+  width: 100px !important
+
+.vertical-middle
+  vertical-align: middle
 </style>

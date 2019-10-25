@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import axios from "axios";
 
 const nasaAPIKey = "xCjs3Fq3PI3V74LHy11wvmbJEcyOhLQ764cI2p2T";
