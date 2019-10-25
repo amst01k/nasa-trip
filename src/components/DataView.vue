@@ -10,10 +10,12 @@
     <APOD />
     <template v-if="roverSeen">
       <v-sheet class="py-3 px-3 w-full">
-        <h1>Mars Rover Images :</h1>
+        <h1 class="text-uppercase font-weight-black">Mars Rover Images</h1>
+        <h2 class="title">Choose a Sol Date Below :</h2>
         <div class="d-flex flex-wrap flex-lg-row flex-column mt-6">
           <v-select
             label="Sol"
+            placeholder="0"
             :items="sol"
             @change="onSol(solSelect)"
             v-model="solSelect"

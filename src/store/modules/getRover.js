@@ -19,8 +19,10 @@ const state = {
       const response = await axios.get(roverURL);
       commit("setRover", response.data);
     },
-    async filterRover({ commit }, sol) {
-      const response = await axios.get(roverSolURL + "&sol=" + `${sol}`);
+    async filterRover({ commit }, sol, page) {
+      const response = await axios.get(
+        roverSolURL + "&sol=" + `${sol}` + "&page=" + `${page}`
+      );
       commit("updRover", response.data);
     }
   },
