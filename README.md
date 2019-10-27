@@ -1,4 +1,4 @@
-# nasa-trip
+# NASA-Trip
 
 ## Project setup
 ```
