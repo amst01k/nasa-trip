@@ -3,7 +3,10 @@
     <v-row>
       <v-col cols="12" sm="6" md="12" lg="12">
         <div class="apods">
-          <v-card class="apod d-block d-sm-block d-md-flex d-lg-flex d-xl-flex py-2 px-3" flat>
+          <v-card
+            class="apod d-block d-sm-block d-md-flex d-lg-flex d-xl-flex py-2 px-3 transparent"
+            flat
+          >
             <v-list-item class="d-block d-sm-block d-md-flex d-lg-flex d-xl-flex px-0">
               <v-img :src="allApod.url" max-width="344" aspect-ratio="1" :alt="allApod.title"></v-img>
               <v-list-item-content class="pr-0 pl-md-6 pl-lg-6">

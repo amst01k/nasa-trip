@@ -2,13 +2,13 @@
   <div class="hero rounded">
     <v-row class="d-flex flex-wrap align-end justify-center">
       <v-col sm="12" md="12" lg="6">
-        <v-sheet class="py-3 px-3">
+        <v-sheet class="py-3 px-3 transparent">
           <h1 class="font-weight-black display-2 text-uppercase">NASA-Trip :</h1>
           <h2 class="title">Experiment with NASA's most popular API's.</h2>
         </v-sheet>
       </v-col>
       <v-col sm="12" md="12" lg="6">
-        <v-sheet class="py-3 px-3">
+        <v-sheet class="py-3 px-3 transparent">
           <h2
             class="subtitle-2 font-weight-bold"
           >Start with NASA's Astrophtography Picture Of the Day(APOD) below :</h2>

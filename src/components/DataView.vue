@@ -62,12 +62,12 @@
                     <strong>{{data.camera.full_name}}</strong>)
                   </v-list-item-subtitle>
                   <p class="body-2 mt-3">
-                    ID:
-                    <strong>{{data.id}}</strong>
-                  </p>
-                  <p class="body-2">
                     Sol :
                     <strong>{{data.sol}}</strong>
+                  </p>
+                  <p class="body-2">
+                    ID:
+                    <strong>{{data.id}}</strong>
                   </p>
                   <p class="body-2">
                     Eartch Launch Date :
