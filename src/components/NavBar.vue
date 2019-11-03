@@ -1,6 +1,6 @@
 <template>
   <nav class="nav">
-    <v-app-bar app flat class="transparent">
+    <v-app-bar app flat hide-on-scroll class="transparent">
       <v-app-bar-nav-icon class="d-sm-none d-md-none d-lg-none d-xl-none" @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="text-uppercase font-weight-black">
         <span>NASA-Trip</span>
