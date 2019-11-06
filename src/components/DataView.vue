@@ -1,15 +1,47 @@
 <template>
   <div class="data-view">
     <APOD />
-    <v-container>
-      <v-row align="start" justify="start">
-        <v-col class="px-0 px-sm-0 px-md-3 px-lg-3">
-          <v-btn outlined @click="onAdd()">{{roverBtn.text}}</v-btn>
-        </v-col>
-      </v-row>
-    </v-container>
-    <template v-if="roverSeen">
-      <Rover />
+    <div class="btn-wrapper">
+      <v-container>
+        <v-row class="py-6">
+          <v-col
+            col="12"
+            sm="12"
+            md="4"
+            lg="4"
+            class="d-flex justify-sm-start justify-md-center justify-lg-center justify-xl-center align-sm-start align-md-center align-lg-center align-xl-center"
+          >
+            <v-btn outlined @click="oncuriosity()">{{curiosityBtn.text}}</v-btn>
+          </v-col>
+          <v-col
+            col="12"
+            sm="12"
+            md="4"
+            lg="4"
+            class="d-flex justify-sm-start justify-md-center justify-lg-center justify-xl-center align-sm-start align-md-center align-lg-center align-xl-center"
+          >
+            <v-btn outlined @click="onOpportunity()">{{opportunityBtn.text}}</v-btn>
+          </v-col>
+          <v-col
+            col="12"
+            sm="12"
+            md="4"
+            lg="4"
+            class="d-flex justify-sm-start justify-md-center justify-lg-center justify-xl-center align-sm-start align-md-center align-lg-center align-xl-center"
+          >
+            <v-btn outlined @click="onSpirit()">{{spiritBtn.text}}</v-btn>
+          </v-col>
+        </v-row>
+      </v-container>
+    </div>
+    <template v-if="curiosity">
+      <curiosity />
+    </template>
+    <template v-if="opportunity">
+      <Opportunity />
+    </template>
+    <template v-if="spirit">
+      <Spirit />
     </template>
   </div>
 </template>
@@ -17,40 +49,59 @@
 <script>
 import { mapActions } from "vuex";
 import APOD from "@/components/APOD.vue";
-import Rover from "@/components/Rover.vue";
+import Curiosity from "@/components/rovers/Curiosity.vue";
+import Opportunity from "@/components/rovers/Opportunity.vue";
+import Spirit from "@/components/rovers/Spirit.vue";
 export default {
   name: "DataView",
   components: {
     APOD,
-    Rover
+    Curiosity,
+    Opportunity,
+    Spirit
   },
   data: () => ({
-    roverSeen: false,
-    roverBtn: {
-      text: "Add Mars Rover Images"
+    curiosity: false,
+    opportunity: false,
+    spirit: false,
+    curiosityBtn: {
+      text: "curiosity Rover Images"
+    },
+    opportunityBtn: {
+      text: "Opportuntiy Rover Images"
+    },
+    spiritBtn: {
+      text: "Spirit Rover Images"
     }
   }),
   methods: {
-    ...mapActions(["fetchRover"]),
-    onAdd() {
-      this.roverSeen = !this.roverSeen;
-      if (this.roverSeen === true) {
-        this.loading = false;
-        this.fetchRover();
-        this.roverBtn.text = "Remove Mars Rover Images";
-      } else {
-        this.roverBtn.text = "Add Mars Rover Images";
-      }
+    ...mapActions(["fetchCuriosity", "fetchOpportunity", "fetchSpirit"]),
+    oncuriosity() {
+      this.opportunity = false;
+      this.spirit = false;
+      this.curiosity = !this.curiosity;
+      this.fetchCuriosity();
+    },
+    onOpportunity() {
+      this.curiosity = false;
+      this.spirit = false;
+      this.opportunity = !this.opportunity;
+      this.fetchOpportunity();
+    },
+    onSpirit() {
+      this.curiosity = false;
+      this.opportunity = false;
+      this.spirit = !this.spirit;
+      this.fetchSpirit();
     }
   }
 };
 </script>
 
 <style lang="sass" scoped>
+.btn-wrapper
+  width: 100%
 .data-view
   display: flex
   flex-wrap: wrap
-
-.w-full
-  width: 100% !important
 </style>

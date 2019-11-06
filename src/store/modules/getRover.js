@@ -1,26 +1,96 @@
 import axios from "axios";
 
-const nasaAPIKey = "xCjs3Fq3PI3V74LHy11wvmbJEcyOhLQ764cI2p2T",
-  roverURL =
-    "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=0&page=1&api_key=" +
-    nasaAPIKey,
-  roverSolURL =
-    `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?page=1&api_key=` +
-    nasaAPIKey;
-
-const state = {
+const nasaAPIKey = `xCjs3Fq3PI3V74LHy11wvmbJEcyOhLQ764cI2p2T`,
+  roverURL = `https://api.nasa.gov/mars-photos/api/v1/rovers/`,
+  state = {
     rover: []
   },
   getters = {
     allRover: state => state.rover
   },
   actions = {
-    async fetchRover({ commit }) {
-      const response = await axios.get(roverURL);
+    async fetchCuriosity({ commit }) {
+      const response = await axios.get(
+        roverURL +
+          `curiosity/` +
+          `photos` +
+          `?sol=` +
+          `0` +
+          `&page=` +
+          `1` +
+          `&api_key=` +
+          nasaAPIKey
+      );
       commit("setRover", response.data);
     },
-    async filterRover({ commit }, sol) {
-      const response = await axios.get(roverSolURL + "&sol=" + `${sol}`);
+    async filterCuriosity({ commit }, sol) {
+      const response = await axios.get(
+        roverURL +
+          `curiosity/` +
+          `photos` +
+          `?sol=` +
+          `${sol}` +
+          `&page=` +
+          `1` +
+          `&api_key=` +
+          nasaAPIKey
+      );
+      commit("updRover", response.data);
+    },
+    async fetchOpportunity({ commit }) {
+      const response = await axios.get(
+        roverURL +
+          `opportunity/` +
+          `photos` +
+          `?sol=` +
+          `0` +
+          `&page=` +
+          `1` +
+          `&api_key=` +
+          nasaAPIKey
+      );
+      commit("setRover", response.data);
+    },
+    async filterOpportunity({ commit }, sol) {
+      const response = await axios.get(
+        roverURL +
+          `opportunity/` +
+          `photos` +
+          `?sol=` +
+          `${sol}` +
+          `&page=` +
+          `1` +
+          `&api_key=` +
+          nasaAPIKey
+      );
+      commit("updRover", response.data);
+    },
+    async fetchSpirit({ commit }) {
+      const response = await axios.get(
+        roverURL +
+          `spirit/` +
+          `photos` +
+          `?sol=` +
+          `0` +
+          `&page=` +
+          `1` +
+          `&api_key=` +
+          nasaAPIKey
+      );
+      commit("setRover", response.data);
+    },
+    async filterSpirit({ commit }, sol) {
+      const response = await axios.get(
+        roverURL +
+          `spirit/` +
+          `photos` +
+          `?sol=` +
+          `${sol}` +
+          `&page=` +
+          `1` +
+          `&api_key=` +
+          nasaAPIKey
+      );
       commit("updRover", response.data);
     }
   },

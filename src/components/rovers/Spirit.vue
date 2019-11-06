@@ -1,15 +1,18 @@
 <template>
   <v-sheet class="py-3 px-3 w-full transparent">
-    <h1 class="text-uppercase font-weight-black">Mars Rover Images</h1>
-    <h2 class="title">Choose a Solar Day(Sol) Below :</h2>
-    <v-alert
-      class="caption mt-3"
-      type="error"
-      dense
-      outlined
-    >Please Note : Some Sol are missing from NASA's API. Either the Rover was down, or no information has been provided.</v-alert>
+    <h1 class="text-uppercase font-weight-black">Mars Spirit Rover Images</h1>
+    <h2 class="title">
+      Choose a
+      <v-icon>mdi-white-balance-sunny</v-icon>&nbsp;Solar Day(Sol) Below :
+    </h2>
+    <v-alert class="caption mt-3" type="error" dense outlined>
+      Please Note :
+      <strong>This may be a large download.</strong> All calls are limited to 25 objects per page.
+      <strong>If no data is returned, please choose another SOL.</strong>
+    </v-alert>
     <div class="d-flex flex-wrap flex-lg-row flex-column mt-6">
       <v-select
+        prepend-icon="mdi-white-balance-sunny"
         label="Sol"
         :items="sol"
         @change="onSol(solSelect)"
@@ -27,7 +30,7 @@
         align="center"
         justify="center"
         v-for="data in allRover.photos"
-        :key="data.img_src"
+        :key="data.id"
       >
         <v-card
           class="rover-card d-block d-sm-block d-md-flex d-lg-flex d-xl-flex transparent"
@@ -94,20 +97,24 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
-  name: "Rover",
+  name: "Spirit",
   data: () => {
     return {
       sol: Array.from(Array(1000).keys()),
-      solSelect: String,
-      loading: true
+      solSelect: String
     };
   },
   methods: {
-    ...mapActions(["filterRover"]),
+    ...mapActions(["filterSpirit"]),
     onSol(sol) {
-      this.filterRover(sol);
+      this.filterSpirit(sol);
     }
   },
   computed: mapGetters(["allRover"])
 };
 </script>
+
+<style lang="sass" scoped>
+.w-full
+    width: 100% !important
+</style>

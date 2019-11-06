@@ -1,20 +1,19 @@
 <template>
-  <div class="hero rounded">
-    <v-row class="d-flex flex-wrap align-end justify-center">
-      <v-col sm="12" md="12" lg="6">
-        <v-sheet class="py-3 px-3 transparent">
-          <h1 class="font-weight-black display-2 text-uppercase">NASA-Trip :</h1>
-          <h2 class="title">Experiment with NASA's most popular API's.</h2>
-        </v-sheet>
-      </v-col>
-      <v-col sm="12" md="12" lg="6">
-        <v-sheet class="py-3 px-3 transparent">
-          <h2
-            class="subtitle-2 font-weight-bold"
-          >Start with NASA's Astrophtography Picture Of the Day(APOD) below :</h2>
-        </v-sheet>
-      </v-col>
-    </v-row>
+  <div class="hero-wrapper">
+    <!-- <transition name="fade"> -->
+    <div class="hero">
+      <v-container>
+        <v-row class="d-flex flex-wrap align-start justify-start">
+          <v-col sm="12" md="12" lg="6" xl="6">
+            <v-sheet class="py-3 px-3 transparent">
+              <h1 class="display-3 text-uppercase font-weight-black">NASA-Trip</h1>
+              <h2 class="mt-2 font-weight-bold">Experiment with NASA's most popular API's.</h2>
+            </v-sheet>
+          </v-col>
+        </v-row>
+      </v-container>
+    </div>
+    <!-- </transition> -->
   </div>
 </template>
 
@@ -26,8 +25,5 @@ export default {
 
 <style lang="sass" scoped>
 .hero
-    margin: 48px 0 0 0
-
-.rounded
-    border-radius: 4px
+  padding: 64px 0 0 0
 </style>

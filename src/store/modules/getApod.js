@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const nasaAPIKey = "xCjs3Fq3PI3V74LHy11wvmbJEcyOhLQ764cI2p2T";
+const nasaAPIKey = "O03ZIb2DOUhT1clbcH6TeK1LgMrw54qp0lJqMqdV";
 const apodURL = "https://api.nasa.gov/planetary/apod?api_key=" + nasaAPIKey;
 
 const state = {

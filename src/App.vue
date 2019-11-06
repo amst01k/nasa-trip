@@ -1,9 +1,9 @@
 <template>
   <v-app>
     <NavBar />
-    <v-content>
+    <Hero />
+    <v-content class="px-0 py-0">
       <v-container>
-        <Hero />
         <DataView />
       </v-container>
     </v-content>

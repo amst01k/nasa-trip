@@ -1,20 +1,26 @@
 <template>
-  <div>
+  <div class="apod-wrapper">
     <v-row>
-      <v-col cols="12" sm="6" md="12" lg="12">
+      <v-col cols="12" sm="12" md="12" lg="12">
         <div class="apods">
           <v-card
             class="apod d-block d-sm-block d-md-flex d-lg-flex d-xl-flex py-2 px-3 transparent"
             flat
           >
             <v-list-item class="d-block d-sm-block d-md-flex d-lg-flex d-xl-flex px-0">
-              <v-img :src="allApod.url" max-width="344" aspect-ratio="1" :alt="allApod.title"></v-img>
+              <v-img :src="allApod.url" max-width="375" aspect-ratio="1" :alt="allApod.title">
+                <template v-slot:placeholder>
+                  <v-row class="fill-height ma-0" align="center" justify="center">
+                    <v-progress-circular indeterminate color="grey lighten-1"></v-progress-circular>
+                  </v-row>
+                </template>
+              </v-img>
               <v-list-item-content class="pr-0 pl-md-6 pl-lg-6">
                 <div class="overline">{{allApod.date}}</div>
                 <v-list-item-title class="title">{{allApod.title}}</v-list-item-title>
                 <v-list-item-subtitle>NASA's Astrophotography Photo Of the Day (APOD)</v-list-item-subtitle>
                 <p class="body-2 my-3">{{allApod.explanation}}</p>
-                <v-alert dense outlined type="error">Warning: The HD APOD could be a large download.</v-alert>
+                <v-alert dense outlined type="error">Warning: The HD APOD may be a large download.</v-alert>
                 <v-card-actions
                   class="justify-start align-start flex-column flex-lg-row px-0 py-0 mt-0 mt-lg-3 vertical-middle"
                 >

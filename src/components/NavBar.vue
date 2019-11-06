@@ -1,24 +1,13 @@
 <template>
   <nav class="nav">
-    <v-app-bar app flat hide-on-scroll class="transparent">
-      <v-app-bar-nav-icon class="d-sm-none d-md-none d-lg-none d-xl-none" @click="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-app-bar app flat>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="text-uppercase font-weight-black">
         <span>NASA-Trip</span>
       </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-toolbar-items class="drawer d-none d-sm-flex">
-        <v-btn text href="https://api.nasa.gov" target="_blank">
-          <span class="mr-2">NASA'S API'S</span>
-          <v-icon small>mdi-open-in-new</v-icon>
-        </v-btn>
-        <v-btn text href="https://github.com/amst01k/nasa-trip.git" target="_blank">
-          <span class="mr-2">GITHUB</span>
-          <v-icon small>mdi-open-in-new</v-icon>
-        </v-btn>
-      </v-toolbar-items>
     </v-app-bar>
     <v-sheet class="fill-height">
-      <v-navigation-drawer v-model="drawer" absolute temporary>
+      <v-navigation-drawer v-model="drawer" fixed temporary>
         <v-container>
           <h3>Learn More :</h3>
           <v-list-item class="px-0 py-0">
