@@ -1,5 +1,5 @@
 <template>
-  <v-sheet class="py-3 px-3 w-full transparent">
+  <v-sheet class="py-3 px-3 w-full transparent" id="top">
     <h1 class="text-uppercase font-weight-black">Mars Spirit Rover Images</h1>
     <h2 class="title">
       Choose a
@@ -27,8 +27,7 @@
         md="12"
         lg="6"
         xl="6"
-        align="center"
-        justify="center"
+        class="d-flex align-center justify-center"
         v-for="data in allRover.photos"
         :key="data.id"
       >

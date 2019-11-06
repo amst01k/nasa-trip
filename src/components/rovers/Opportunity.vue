@@ -1,5 +1,5 @@
 <template>
-  <v-sheet class="py-3 px-3 w-full transparent">
+  <v-sheet class="py-3 px-3 w-full transparent" id="top">
     <h1 class="text-uppercase font-weight-black">Mars Opportunity Rover Images</h1>
     <h2 class="title">
       Choose a
